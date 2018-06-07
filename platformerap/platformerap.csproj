@@ -41,11 +41,18 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Firebal.cs" />
+    <Compile Include="notGame1.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Metodos\Ataque.cs" />
+    <Compile Include="Metodos\Botao.cs" />
     <Compile Include="Metodos\Camera.cs" />
+    <Compile Include="Metodos\Componente.cs" />
     <Compile Include="Metodos\Map.cs" />
     <Compile Include="caracters\Player.cs" />
+    <Compile Include="Metodos\MenuState.cs" />
+    <Compile Include="Metodos\GameState.cs" />
+    <Compile Include="Metodos\State.cs" />
     <Compile Include="PowerUps.cs" />
     <Compile Include="Metodos\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

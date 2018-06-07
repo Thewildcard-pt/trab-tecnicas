@@ -14,7 +14,6 @@ namespace platformerap
     {
         Texture2D texture;
         public Rectangle position;
-        bool toright;
 
         int lifespan;
         public bool isVisible;

@@ -14,7 +14,7 @@ namespace platformerap
         private Vector2 velocity;
         private int speed=3;
         private int friction;
-        private Vector2 maxVelocity = new Vector2((float)15,(float)15);
+        private Vector2 maxVelocity = new Vector2((float)10,(float)15);
         private Rectangle rectangle;
         private Texture2D borders;
         public KeyboardState pastkey;
@@ -24,7 +24,6 @@ namespace platformerap
         public bool spawned { get; set; }
         private bool falling = false;
         private int invun = 10;
-
         private bool hasJumped = false;
 
         public Vector2 Position
@@ -57,23 +56,17 @@ namespace platformerap
             if (velocity.Y < 15)
             {
                 velocity.Y += 0.6f;
-                    if (velocity.Y > 0)
-                        falling = true;
+                if(velocity.Y > 0)falling = true;
             }
 
-            if(falling && jumpCount == 0)
-            {
-                jumpCount = 1;
-            }
-
+            if(falling && jumpCount == 0)jumpCount = 1;            
             if(invun > 0)invun--;
             
-
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, 100, 100);
         }
 
-        public void dano(int value)
+        public void Dano(int value)
         {
             if(invun <= 0)
             {
@@ -108,7 +101,7 @@ namespace platformerap
            
         }
 
-        public bool intersects(Rectangle newRectangle, int xOffset, int yOffset)
+        public bool Intersects(Rectangle newRectangle, int xOffset, int yOffset)
         {
 
             if (rectangle.TouchTopOf(newRectangle) || (rectangle.TouchLeftOf(newRectangle)) || (rectangle.TouchRightOf(newRectangle)) || (rectangle.TouchBottomOf(newRectangle)))

@@ -374,4 +374,47 @@ namespace platformerap
         }
     }
 
+    public class Birb  : MovingTiles
+    {
+        int i,timer = 60;
+        Texture2D _ataque;
+        public List<Firebal> Fball = new List<Firebal>();
+
+
+        public Birb(int i, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally, int hboundry) : base(i, newRectangle, newVelocity, newVertically, newHorizontally, hboundry)
+        {
+            this.i = i;
+            _ataque = Content.Load<Texture2D>("fireBall");
+        }
+
+        public new void Update(GameTime gameTime,Rectangle player)
+        {
+            base.Update(gameTime);
+            if (goingRight)
+            {
+                texture = Content.Load<Texture2D>((string)(i+1).ToString());
+            }
+            else
+            {
+                texture = Content.Load<Texture2D>(i.ToString());
+            }
+            timer -= 1;
+            if(Math.Abs(player.X - Rectangle.X) < 250 && timer<=0)
+            {
+                Fball.Add(new Firebal(Rectangle,_ataque));
+                timer = 60;
+            }
+
+        }    
+        
+        public new void Draw(SpriteBatch spritebatch)
+        {
+            base.Draw(spritebatch);
+            foreach(Firebal f in Fball)
+            {
+                f.Draw(spritebatch);
+            }
+        }
+
+    }
     }

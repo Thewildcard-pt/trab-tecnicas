@@ -21,6 +21,7 @@ namespace platformerap
         private List<SpikeTiles> spikeTiles = new List<SpikeTiles>();
         private List<Inimigo> inimigo = new List<Inimigo>();
         private List<Zombie> zombie = new List<Zombie>();
+        private List<Birb> birb = new List<Birb>();
 
 
         //public access methods
@@ -70,6 +71,11 @@ namespace platformerap
             get { return zombie; }
         }
 
+        public List<Birb> Birb
+        {
+            get { return birb; }
+        }
+
         public int Width { get; set; }
         public int Height { get; set; }
 
@@ -80,10 +86,10 @@ namespace platformerap
                 {
                     int number = map[y, x];
 
-                    if (number > 0 && number != 13 && number != 14 && number != 15 && number != 17 && number != 18 && number != 19 && number != 20 && number != 21 && number != 25 && number != 22 && number != 23 && number != 24 && number!=26 && number !=28 && number != 30)
+                    if (number > 0 && number != 13 && number != 14 && number != 15 && number != 17 && number != 18 && number != 19 && number != 20 && number != 21 && number != 25 && number != 22 && number != 23 && number != 24 && number != 26 && number != 28 && number != 30 && number != 32)
                         collisionTiles.Add(new CollisionTiles(number, new Rectangle(x * size, y * size, size, size)));
                     else if (number == 13 || number == 14 || number == 15)
-                        movingTiles.Add(new MovingTiles(number, new Rectangle(x * size, y * size, size, size), 120, false, true,3));
+                        movingTiles.Add(new MovingTiles(number, new Rectangle(x * size, y * size, size, size), 120, false, true, 3));
                     else if (number == 17 || number == 18)
                         waterTiles.Add(new WaterTiles(number, new Rectangle(x * size, y * size, size, size)));
                     else if (number == 19)
@@ -93,20 +99,22 @@ namespace platformerap
                     else if (number == 21)
                         Sawtile.Add(new Sawtile(number, new Rectangle(x * size, y * size, size, size), 120, false, true));
                     else if (number == 22)
-                        SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size) , y * size, size ,  size / 2)));
+                        SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size), y * size, size, size / 2)));
                     else if (number == 23)
-                        SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size) , y * size, size / 2, size)));
+                        SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size), y * size, size / 2, size)));
                     else if (number == 24)
                         SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size) + size / 2, y * size, size / 2, size)));
                     else if (number == 25)
-                        SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size) + size / 2, y * size, size , size/ 2)));
+                        SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size) + size / 2, y * size, size, size / 2)));
 
-                    else if (number == 26 )
-                        Inimigo.Add(new Inimigo(number,number+1,40,30, new Rectangle(x * size, ((y *  size)), size , size), 120, false, true,100,150));
+                    else if (number == 26)
+                        Inimigo.Add(new Inimigo(number, number + 1, 40, 30, new Rectangle(x * size, ((y * size)), size, size), 120, false, true, 100, 150));
                     else if (number == 28)
-                        inimigo.Add(new Inimigo(number, number+1,60,50, new Rectangle(x * size, ((y * size)), size, size), 120, false, true,130,0));
-                    else if(number == 30)
+                        inimigo.Add(new Inimigo(number, number + 1, 60, 50, new Rectangle(x * size, ((y * size)), size, size), 120, false, true, 130, 0));
+                    else if (number == 30)
                         Zombie.Add(new Zombie(number, number + 1, 60, 50, new Rectangle(x * size, ((y * size)), size, size), 120, false, true, 130, 50));
+                    else if (number == 32)
+                        Birb.Add(new Birb(number, new Rectangle(x * size, y * size, size, size /2), 120, false, true, 3));
                     Width = (x + 1) * size;
                     Height = (y + 1) * size;
                 }
@@ -131,6 +139,8 @@ namespace platformerap
             foreach (Inimigo tile in Inimigo)
                 tile.Draw(spriteBatch);
             foreach (Zombie tile in Zombie)
+                tile.Draw(spriteBatch);
+            foreach (Birb tile in Birb)
                 tile.Draw(spriteBatch);
         }
 

@@ -12,7 +12,7 @@ namespace platformerap
             get { return transform; }
         }
 
-        private Vector2 center;
+        public Vector2 center;
         private Viewport viewport;
 
         public Camera(Viewport newViewport)
