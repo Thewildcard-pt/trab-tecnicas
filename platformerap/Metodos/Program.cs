@@ -15,7 +15,7 @@ namespace platformerap
         static void Main()
         {
       
-            using (var game = new BackupGame1())
+            using (var game = new Game1())
             game.Run();
         }
     }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 
 namespace platformerap
@@ -21,10 +22,13 @@ namespace platformerap
         private int jumpCount = 0;
         private int maxJump = 2;
         public int hp = 100;
-        public bool spawned { get; set; }
+        public bool Spawned { get; set; }
         private bool falling = false;
         private int invun = 10;
         private bool hasJumped = false;
+        private Texture2D ataquesprite;
+        List<AtaqueJogador> ataque = new List<AtaqueJogador>();
+        private bool goinright;
 
         public Vector2 Position
         {
@@ -41,7 +45,10 @@ namespace platformerap
         {
             borders = new Texture2D(graphics.GraphicsDevice, 1, 1);
             borders.SetData(new Color[] { Color.Red });
-            spawned = false;
+            Spawned = false;
+            ataquesprite = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            ataquesprite.SetData(new Color[] { Color.Red });
+            goinright = true;
         }
 
         public void Load(ContentManager Content)
@@ -64,6 +71,20 @@ namespace platformerap
             
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, 100, 100);
+
+            foreach(AtaqueJogador a in ataque)
+            {
+                a.Update(gameTime);
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                goinright = true;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                goinright = false;
+            }
         }
 
         public void Dano(int value)
@@ -97,7 +118,12 @@ namespace platformerap
                 jumpCount += 1;
             }
 
-             pastkey = Keyboard.GetState();
+            if (Keyboard.GetState().IsKeyDown(Keys.J) && !pastkey.IsKeyDown(Keys.J))
+            {
+                    ataque.Add(new AtaqueJogador(ataquesprite, Rectangle, goinright));            
+            }
+
+                pastkey = Keyboard.GetState();
            
         }
 
@@ -132,6 +158,7 @@ namespace platformerap
                 {
                     velocity.X = -30;
                     velocity.Y = -10;
+                    jumpCount = 0;
                 }
             }
 
@@ -143,6 +170,7 @@ namespace platformerap
                 {
                     velocity.X = 30;
                     velocity.Y = -10;
+                    jumpCount = 0 ;
                 }
             }
 
@@ -159,9 +187,14 @@ namespace platformerap
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (spawned)
+            if (Spawned)
             {
                 spriteBatch.Draw(texture, rectangle, Color.White);
+
+                foreach(AtaqueJogador a in ataque)
+                {
+                    a.Draw(spriteBatch);
+                }
 
                 //draw borders
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y, 1, 100), Color.Red);

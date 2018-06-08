@@ -15,7 +15,7 @@ namespace platformerap
         Texture2D texture;
         public Rectangle position;
 
-        int lifespan;
+        public int lifespan;
         public bool isVisible;
 
         public Ataque(Texture2D newtexture,Rectangle position,bool right)
@@ -23,8 +23,7 @@ namespace platformerap
             texture = newtexture;
             isVisible = true;
             lifespan = 15;
-            this.position = position;
-            this.position.Width = (int)(position.Width * 0.75);
+            
             if (right)
             {
                 this.position.X = position.X+position.Width+5;
@@ -33,9 +32,12 @@ namespace platformerap
             {
                 this.position.X = position.X - 5-position.Width / 2;
             }
+            this.position = position;
+            this.position.Width = (int)(position.Width * 0.75);
+
         }
 
-        public void update()
+        public void Update()
         {
             lifespan -= 1;
             if(lifespan <= 0)
@@ -50,4 +52,5 @@ namespace platformerap
             spritebatch.Draw(texture, position, Color.White);
         }
     }
+
 }

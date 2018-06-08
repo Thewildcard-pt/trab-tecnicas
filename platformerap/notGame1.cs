@@ -79,9 +79,9 @@ namespace platformerap
         {
             foreach (DoorTiles tile in map.DoorTiles)
             {
-                if (tile.spawned && !player.spawned)
+                if (tile.Spawned && !player.Spawned)
                 {
-                    player.spawned = true;
+                    player.Spawned = true;
                     player.Position = new Vector2(tile.Rectangle.X, tile.Rectangle.Y);
                 }
             }

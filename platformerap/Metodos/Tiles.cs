@@ -32,12 +32,12 @@ namespace platformerap
 
     public class DoorTiles : Tiles
     {
-        public bool spawned { get; set; }
+        public bool Spawned { get; set; }
         public DoorTiles(int i, Rectangle newRectangle)
         {
             texture = Content.Load<Texture2D>(i.ToString());
             Rectangle = newRectangle;
-            spawned = true;
+            Spawned = true;
         }
     }
 
@@ -230,11 +230,11 @@ namespace platformerap
 
         }
 
-        public void updateG(GameTime h)
+        public void UpdateG(GameTime h)
         {
             foreach (Ataque a in Lataque)
             {
-                a.update();
+                a.Update();
             }
 
             Lataque.RemoveAll(a => a.isVisible == false);
@@ -257,7 +257,7 @@ namespace platformerap
 
         public void UpdateI(GameTime h)
         {
-            updateG(h);
+            UpdateG(h);
             base.Update(h);
         }
 
@@ -285,12 +285,12 @@ namespace platformerap
                     Lataque.Add(new Ataque(texturaAtaque, Rectangle,false));
 
                 }
-                updateG(h);
+                UpdateG(h);
                 
             }
         }
 
-          public  void Draw(SpriteBatch spriteBatch)
+          public new void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texturabase, lifeBarBase , Color.White);
             spriteBatch.Draw(texturacurrent, lifeBarCurrent, Color.White);
@@ -339,7 +339,7 @@ namespace platformerap
 
         }
 
-        public void updateG(GameTime h)
+        public void UpdateG(GameTime h)
         {
             if (Timer <= 0)
             {
@@ -353,11 +353,11 @@ namespace platformerap
 
         public void UpdateI(GameTime h)
         {
-            updateG(h);
+            UpdateG(h);
             base.Update(h);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texturabase, lifeBarBase, Color.White);
             spriteBatch.Draw(texturacurrent, lifeBarCurrent, Color.White);

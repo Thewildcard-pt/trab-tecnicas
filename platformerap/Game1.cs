@@ -13,12 +13,14 @@ namespace platformerap
     /// </summary>
     public class Game1 : Game
     {
-    GraphicsDeviceManager graphics;
-    SpriteBatch spriteBatch;
+    public GraphicsDeviceManager graphics;
+    public SpriteBatch spriteBatch;
 
     private State _currentState;
 
     private State _nextState;
+
+    public State _saved_screen;
 
     public void ChangeState(State state)
     {
@@ -40,8 +42,8 @@ namespace platformerap
     protected override void Initialize()
     {
             // TODO: Add your initialization logic here
-            graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 640;
+            graphics.PreferredBackBufferWidth = 1366;
+            graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
             IsMouseVisible = true;
 

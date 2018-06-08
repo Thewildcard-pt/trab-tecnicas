@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AtaqueJogador.cs" />
     <Compile Include="Firebal.cs" />
     <Compile Include="notGame1.cs" />
     <Compile Include="Game1.cs" />
@@ -49,10 +50,12 @@
     <Compile Include="Metodos\Camera.cs" />
     <Compile Include="Metodos\Componente.cs" />
     <Compile Include="Metodos\Map.cs" />
-    <Compile Include="caracters\Player.cs" />
-    <Compile Include="Metodos\MenuState.cs" />
-    <Compile Include="Metodos\GameState.cs" />
-    <Compile Include="Metodos\State.cs" />
+    <Compile Include="Metodos\Player.cs" />
+    <Compile Include="Screens\LossState.cs" />
+    <Compile Include="Screens\PauseState.cs" />
+    <Compile Include="Screens\MenuState.cs" />
+    <Compile Include="Screens\GameState.cs" />
+    <Compile Include="Screens\State.cs" />
     <Compile Include="PowerUps.cs" />
     <Compile Include="Metodos\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,9 +76,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Screens\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

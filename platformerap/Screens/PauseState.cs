@@ -10,11 +10,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace platformerap
 {
-    public class MenuState : State
+    public class PauseState : State
     {
         private List<Componente> _componentes;
 
-        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public PauseState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("botao");
             var buttonFont = _content.Load<SpriteFont>("teste");
@@ -22,8 +22,8 @@ namespace platformerap
 
             var newGameButton = new Botao(buttonTexture, buttonFont) {
 
-                Position = new Vector2(30, 150),
-                text = " New Game",
+                Position = new Vector2((_game.graphics.PreferredBackBufferWidth / 2 - buttonTexture.Width / 2), game.graphics.PreferredBackBufferHeight / 2 - 200),
+                text = "New Game",
                 PenColour = Color.Black
             };
 
@@ -32,7 +32,7 @@ namespace platformerap
             var QuitGameButton = new Botao(buttonTexture, buttonFont)
             {
 
-                Position = new Vector2(30, 350),
+                Position = new Vector2((_game.graphics.PreferredBackBufferWidth / 2 - buttonTexture.Width / 2), game.graphics.PreferredBackBufferHeight / 2),
                 text = "Quit",
                 PenColour = Color.Black
             };
@@ -47,13 +47,12 @@ namespace platformerap
 
         private void QuitGameButton_click(object sender, EventArgs e)
         {
-            Console.Write("detetado");
-           // _game.Exit();
+            _game.Exit();
         }
 
         private void newGameButton_click(object sender, EventArgs e)
         {
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            _game.ChangeState((_game._saved_screen));
         }
 
         public override void Draw(GameTime gameTime,SpriteBatch spriteBatch)

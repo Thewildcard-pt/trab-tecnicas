@@ -72,8 +72,8 @@ namespace platformerap
 
             _ihovering = false;
 
-            if (mouseRectangle.Intersects(rectangle)) _ihovering = true;
-            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed) Click?.Invoke(this, new EventArgs());
+            if (mouseRectangle.Intersects(rectangle))_ihovering = true;
+            if (currentMouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed && _ihovering) Click?.Invoke(this, new EventArgs());
 
         }
         #endregion
