@@ -244,16 +244,22 @@ namespace platformerap
                 grace--;
             }
 
-            if (Timer <= 0)
-            {
-                Timer = 30;
-                Hp -= 20;
-            }
+            Timer--;
 
             lifeBarBase = new Rectangle((int)Rectangle.X -10, (int)Rectangle.Y - Rectangle.Height / 3,(int)(Rectangle.Width + 20), 10);
             lifeBarCurrent = new Rectangle((int)Rectangle.X -10 , (int)Rectangle.Y - Rectangle.Height / 3 , (int)((Rectangle.Width + 20) * Hp/100 ), 10);
         }
 
+
+
+        public void Dano(int value)
+        {
+            if (Timer <= 0)
+            {
+                Hp -= value;
+                Timer = 20;
+            }
+        }
 
         public void UpdateI(GameTime h)
         {
