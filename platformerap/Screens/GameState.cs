@@ -185,11 +185,14 @@ namespace platformerap
                     if (b.Intersects(a.position, map.Width, map.Height)) b.Dano(25);
                 }
 
+                b.Fball.RemoveAll(a => a.hit == true);
+                b.Fball.RemoveAll(a => a.lifespan <= 0);
                 foreach (Firebal f in b.Fball)
                 {
                     if (player.Intersects(f._rectangle, map.Width, map.Height))
                     {
                         player.Dano(f.dano);
+                        f.hit = true;
                     }
                     f.Update(player.Rectangle);
                 }
