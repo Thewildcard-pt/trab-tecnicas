@@ -338,6 +338,9 @@ namespace platformerap
         Texture2D texturabase, texturacurrent, texturaAtaque;
         Texture2D textura2;
         int modifier;
+        double rot = 0;
+        int stateAgle = 1;
+
         public Zombie(int i, int i2, int dano, int timer, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally, int hp, int speed) : base(i, newRectangle, newVelocity + speed, newVertically, newHorizontally, 6)
         {
             this.Hp = hp;
@@ -419,10 +422,12 @@ namespace platformerap
 
     public class Birb : MovingTiles
     {
-        int i, timer = 60;
+        int i, timer = 60, timerd = 20;
+        public int Hp=100;
         Texture2D _ataque;
         public List<Firebal> Fball = new List<Firebal>();
-
+        int stateAgle = 1;
+        double rot = 0;
 
         public Birb(int i, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally, int hboundry) : base(i, newRectangle, newVelocity, newVertically, newHorizontally, hboundry)
         {
@@ -433,14 +438,23 @@ namespace platformerap
         public new void Update(GameTime gameTime, Rectangle player)
         {
             base.Update(gameTime);
-            if (goingRight)
+            double angle = Math.PI * 30 / 180.0;
+
+            if (rot > 25)
             {
-                texture = Content.Load<Texture2D>((string)(i + 1).ToString());
+                stateAgle = -1;
+
             }
-            else
+            if (stateAgle == -1)
             {
-                texture = Content.Load<Texture2D>(i.ToString());
+                rot = rot - Math.Sin(angle);
+
             }
+            if (rot <= 0) stateAgle = 1;
+            if (stateAgle == 1) rot += Math.Sin(angle);
+            this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y + (int)rot, this.Rectangle.Width, this.Rectangle.Height);
+
+            timerd--;
             timer -= 1;
             if (Math.Abs(player.X - Rectangle.X) < 250 && timer <= 0)
             {
@@ -448,6 +462,31 @@ namespace platformerap
                 timer = 60;
             }
 
+        }
+
+        public bool Intersects(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+
+            if (Rectangle.TouchTopOf(newRectangle) || (Rectangle.TouchLeftOf(newRectangle)) || (Rectangle.TouchRightOf(newRectangle)) || (Rectangle.TouchBottomOf(newRectangle)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+
+        public void Dano(int value)
+        {
+            if (timerd <= 0)
+            {
+                Hp -= value;
+                timerd = 20;
+            }
         }
 
         public new void Draw(SpriteBatch spritebatch)
