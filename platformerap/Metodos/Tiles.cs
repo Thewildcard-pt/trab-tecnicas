@@ -11,7 +11,7 @@ namespace platformerap
     {
         public Texture2D texture;
 
-        public Rectangle Rectangle { get; set;}
+        public Rectangle Rectangle { get; set; }
         public static ContentManager Content { get; set; }
         public static GraphicsDeviceManager Graphics { get; set; }
 
@@ -82,11 +82,12 @@ namespace platformerap
 
         public void Update(GameTime gameTime)
         {
-            
+
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             delay -= dt;
 
-            if (delay < 0f) {
+            if (delay < 0f)
+            {
                 System.Diagnostics.Debug.WriteLine(delay);
                 this.Visible = false;
             }
@@ -96,7 +97,7 @@ namespace platformerap
                 delay = 2f;
                 this.Visible = true;
             }
-                
+
         }
 
         new public void Draw(SpriteBatch spriteBatch)
@@ -111,10 +112,10 @@ namespace platformerap
         private bool Vertically { get; set; }
         public int Velocity;
         int x, y, topBoundry, bottomBoundry;
-           public  bool goingRight = true, goingUp = true;
+        public bool goingRight = true, goingUp = true;
         int hboundry;
 
-        public int leftBoundry , rightBoundry;
+        public int leftBoundry, rightBoundry;
 
 
         public int X
@@ -129,7 +130,7 @@ namespace platformerap
             set { this.y = value; }
         }
 
-        public MovingTiles(int i, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally,int hboundry)
+        public MovingTiles(int i, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally, int hboundry)
         {
             texture = Content.Load<Texture2D>(i.ToString());
             Rectangle = newRectangle;
@@ -187,21 +188,21 @@ namespace platformerap
 
             Rectangle = new Rectangle(x, y, Rectangle.Width, Rectangle.Height);
         }
-     
+
     }
 
-   public class Sawtile : MovingTiles
+    public class Sawtile : MovingTiles
+    {
+        public Sawtile(int i, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally) : base(i, newRectangle, newVelocity, newVertically, newHorizontally, 5)
         {
-            public Sawtile(int i, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally) : base( i, newRectangle, newVelocity, newVertically, newHorizontally,5)
-            {
-            }
         }
+    }
 
     public class Inimigo : MovingTiles
     {
-        public int Hp,Timer,TimerA,grace,timermax,dano;
-        Rectangle lifeBarBase,lifeBarCurrent;
-        Texture2D texturabase, texturacurrent,texturaAtaque; 
+        public int Hp, Timer, TimerA, grace, timermax, dano;
+        Rectangle lifeBarBase, lifeBarCurrent;
+        Texture2D texturabase, texturacurrent, texturaAtaque;
         Texture2D textura2;
         List<Ataque> Lataque = new List<Ataque>();
         int modifier;
@@ -210,7 +211,7 @@ namespace platformerap
             get { return Lataque; }
         }
 
-        public Inimigo(int i,int i2, int dano,int timer, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally,int hp,int speed) : base(i, newRectangle, newVelocity+speed, newVertically, newHorizontally,6)
+        public Inimigo(int i, int i2, int dano, int timer, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally, int hp, int speed) : base(i, newRectangle, newVelocity + speed, newVertically, newHorizontally, 6)
         {
             this.Hp = hp;
             this.Timer = 30;
@@ -225,8 +226,8 @@ namespace platformerap
             texturaAtaque.SetData(new Color[] { Color.Red });
             textura2 = Content.Load<Texture2D>(i2.ToString());
             grace = 0;
-            
-          
+
+
 
         }
 
@@ -239,18 +240,36 @@ namespace platformerap
 
             Lataque.RemoveAll(a => a.isVisible == false);
 
-            if(grace > 0)
+            if (grace > 0)
             {
                 grace--;
             }
 
             Timer--;
 
-            lifeBarBase = new Rectangle((int)Rectangle.X -10, (int)Rectangle.Y - Rectangle.Height / 3,(int)(Rectangle.Width + 20), 10);
-            lifeBarCurrent = new Rectangle((int)Rectangle.X -10 , (int)Rectangle.Y - Rectangle.Height / 3 , (int)((Rectangle.Width + 20) * Hp/100 ), 10);
+            lifeBarBase = new Rectangle((int)Rectangle.X - 10, (int)Rectangle.Y - Rectangle.Height / 3, (int)(Rectangle.Width + 20), 10);
+            lifeBarCurrent = new Rectangle((int)Rectangle.X - 10, (int)Rectangle.Y - Rectangle.Height / 3, (int)((Rectangle.Width + 20) * Hp / 100), 10);
+        }
+   public void UpdateI(GameTime h)
+        {
+            UpdateG(h);
+            base.Update(h);
+        }
+        public bool Intersects(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+
+            if (Rectangle.TouchTopOf(newRectangle) || (Rectangle.TouchLeftOf(newRectangle)) || (Rectangle.TouchRightOf(newRectangle)) || (Rectangle.TouchBottomOf(newRectangle)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
+     
 
         public void Dano(int value)
         {
@@ -259,12 +278,6 @@ namespace platformerap
                 Hp -= value;
                 Timer = 20;
             }
-        }
-
-        public void UpdateI(GameTime h)
-        {
-            UpdateG(h);
-            base.Update(h);
         }
 
         public void UpdateA(GameTime h, Rectangle player)
@@ -284,38 +297,38 @@ namespace platformerap
                 grace = 60;
                 if (goingRight)
                 {
-                    Lataque.Add(new Ataque(texturaAtaque, Rectangle,true));
+                    Lataque.Add(new Ataque(texturaAtaque, Rectangle, true));
                 }
                 else
                 {
-                    Lataque.Add(new Ataque(texturaAtaque, Rectangle,false));
+                    Lataque.Add(new Ataque(texturaAtaque, Rectangle, false));
 
                 }
                 UpdateG(h);
-                
+
             }
         }
 
-          public new void Draw(SpriteBatch spriteBatch)
+        public new void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texturabase, lifeBarBase , Color.White);
+            spriteBatch.Draw(texturabase, lifeBarBase, Color.White);
             spriteBatch.Draw(texturacurrent, lifeBarCurrent, Color.White);
-            foreach(Ataque a in Lataque)
+            foreach (Ataque a in Lataque)
             {
                 a.Draw(spriteBatch);
             }
             if (goingRight)
             {
-                spriteBatch.Draw(textura2,Rectangle,Color.White);
+                spriteBatch.Draw(textura2, Rectangle, Color.White);
             }
             else
             {
                 spriteBatch.Draw(texture, Rectangle, Color.White);
             }
-            
+
         }
 
-        
+
     }
 
     public class Zombie : MovingTiles
@@ -347,11 +360,9 @@ namespace platformerap
 
         public void UpdateG(GameTime h)
         {
-            if (Timer <= 0)
-            {
-                Timer = 30;
-                Hp -= 20;
-            }
+            Timer--;
+
+
             lifeBarBase = new Rectangle((int)Rectangle.X - 10, (int)Rectangle.Y - Rectangle.Height / 3, (int)(Rectangle.Width + 20), 10);
             lifeBarCurrent = new Rectangle((int)Rectangle.X - 10, (int)Rectangle.Y - Rectangle.Height / 3, (int)((Rectangle.Width + 20) * Hp / 100), 10);
         }
@@ -362,6 +373,32 @@ namespace platformerap
             UpdateG(h);
             base.Update(h);
         }
+
+        public bool Intersects(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+
+            if (Rectangle.TouchTopOf(newRectangle) || (Rectangle.TouchLeftOf(newRectangle)) || (Rectangle.TouchRightOf(newRectangle)) || (Rectangle.TouchBottomOf(newRectangle)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+
+        public void Dano(int value)
+        {
+            if (Timer <= 0)
+            {
+                Hp -= value;
+                Timer = 20;
+            }
+        }
+
 
         public new void Draw(SpriteBatch spriteBatch)
         {
@@ -380,9 +417,9 @@ namespace platformerap
         }
     }
 
-    public class Birb  : MovingTiles
+    public class Birb : MovingTiles
     {
-        int i,timer = 60;
+        int i, timer = 60;
         Texture2D _ataque;
         public List<Firebal> Fball = new List<Firebal>();
 
@@ -393,34 +430,34 @@ namespace platformerap
             _ataque = Content.Load<Texture2D>("fireBall");
         }
 
-        public new void Update(GameTime gameTime,Rectangle player)
+        public new void Update(GameTime gameTime, Rectangle player)
         {
             base.Update(gameTime);
             if (goingRight)
             {
-                texture = Content.Load<Texture2D>((string)(i+1).ToString());
+                texture = Content.Load<Texture2D>((string)(i + 1).ToString());
             }
             else
             {
                 texture = Content.Load<Texture2D>(i.ToString());
             }
             timer -= 1;
-            if(Math.Abs(player.X - Rectangle.X) < 250 && timer<=0)
+            if (Math.Abs(player.X - Rectangle.X) < 250 && timer <= 0)
             {
-                Fball.Add(new Firebal(Rectangle,_ataque));
+                Fball.Add(new Firebal(Rectangle, _ataque));
                 timer = 60;
             }
 
-        }    
-        
+        }
+
         public new void Draw(SpriteBatch spritebatch)
         {
             base.Draw(spritebatch);
-            foreach(Firebal f in Fball)
+            foreach (Firebal f in Fball)
             {
                 f.Draw(spritebatch);
             }
         }
 
     }
-    }
+}

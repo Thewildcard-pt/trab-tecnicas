@@ -13,9 +13,9 @@ namespace platformerap
         private Texture2D texture;
         private Vector2 position = new Vector2(0, 0);
         private Vector2 velocity;
-        private int speed=3;
+        private int speed = 3;
         private int friction;
-        private Vector2 maxVelocity = new Vector2((float)10,(float)15);
+        private Vector2 maxVelocity = new Vector2((float)10, (float)15);
         private Rectangle rectangle;
         private Texture2D borders;
         public KeyboardState pastkey;
@@ -27,7 +27,7 @@ namespace platformerap
         private int invun = 10;
         private bool hasJumped = false;
         private Texture2D ataquesprite;
-        List<AtaqueJogador> ataque = new List<AtaqueJogador>();
+        private List<AtaqueJogador> ataque = new List<AtaqueJogador>();
         private bool goinright;
 
         public Vector2 Position
@@ -40,6 +40,8 @@ namespace platformerap
         {
             get { return rectangle; }
         }
+
+        internal List<AtaqueJogador> Ataque { get => ataque; set => ataque = value; }
 
         public Player(GraphicsDeviceManager graphics)
         {
@@ -63,16 +65,16 @@ namespace platformerap
             if (velocity.Y < 15)
             {
                 velocity.Y += 0.6f;
-                if(velocity.Y > 0)falling = true;
+                if (velocity.Y > 0) falling = true;
             }
 
-            if(falling && jumpCount == 0)jumpCount = 1;            
-            if(invun > 0)invun--;
-            
+            if (falling && jumpCount == 0) jumpCount = 1;
+            if (invun > 0) invun--;
+
             position += velocity;
             rectangle = new Rectangle((int)position.X, (int)position.Y, 100, 100);
 
-            foreach(AtaqueJogador a in ataque)
+            foreach (AtaqueJogador a in ataque)
             {
                 a.Update(gameTime);
             }
@@ -89,14 +91,14 @@ namespace platformerap
 
         public void Dano(int value)
         {
-            if(invun <= 0)
+            if (invun <= 0)
             {
                 hp -= value;
                 invun = 20;
             }
         }
 
-            private void Input(GameTime gameTime)
+        private void Input(GameTime gameTime)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds * 180;
 
@@ -109,22 +111,24 @@ namespace platformerap
                 velocity.X -= (float)speed;
             if (velocity.X < -maxVelocity.X) velocity.X = -maxVelocity.X;
             else
-                velocity.X -= velocity.X/8;
+                velocity.X -= velocity.X / 8;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && jumpCount<maxJump && !pastkey.IsKeyDown(Keys.Space) )
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && jumpCount < maxJump && !pastkey.IsKeyDown(Keys.Space))
             {
                 position.Y -= 17f;
                 velocity.Y = -15f;
                 jumpCount += 1;
             }
 
+
+            ataque.RemoveAll(a => a.isVisible == false);
             if (Keyboard.GetState().IsKeyDown(Keys.J) && !pastkey.IsKeyDown(Keys.J))
             {
-                    ataque.Add(new AtaqueJogador(ataquesprite, Rectangle, goinright));            
+                ataque.Add(new AtaqueJogador(ataquesprite, Rectangle, goinright));
             }
 
-                pastkey = Keyboard.GetState();
-           
+            pastkey = Keyboard.GetState();
+
         }
 
         public bool Intersects(Rectangle newRectangle, int xOffset, int yOffset)
@@ -166,11 +170,11 @@ namespace platformerap
             {
                 position.X = newRectangle.X + newRectangle.Width + 6;
 
-                if(Keyboard.GetState().IsKeyDown(Keys.Space) && Keyboard.GetState().IsKeyDown(Keys.A )&& pastkey.IsKeyUp(Keys.Space))
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) && Keyboard.GetState().IsKeyDown(Keys.A) && pastkey.IsKeyUp(Keys.Space))
                 {
                     velocity.X = 30;
                     velocity.Y = -10;
-                    jumpCount = 0 ;
+                    jumpCount = 0;
                 }
             }
 
@@ -191,7 +195,7 @@ namespace platformerap
             {
                 spriteBatch.Draw(texture, rectangle, Color.White);
 
-                foreach(AtaqueJogador a in ataque)
+                foreach (AtaqueJogador a in ataque)
                 {
                     a.Draw(spriteBatch);
                 }

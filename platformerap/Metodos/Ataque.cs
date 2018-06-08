@@ -18,21 +18,24 @@ namespace platformerap
         public int lifespan;
         public bool isVisible;
 
-        public Ataque(Texture2D newtexture,Rectangle position,bool right)
+        public Ataque(Texture2D newtexture,Rectangle Nposition,bool right)
         {
             texture = newtexture;
             isVisible = true;
             lifespan = 15;
-            
+
+
+            this.position = Nposition;
+
             if (right)
             {
-                this.position.X = position.X+position.Width+5;
+                this.position.X = (position.X + position.Width / 2) + (int)(position.Width / 3);
             }
             else
             {
-                this.position.X = position.X - 5-position.Width / 2;
+                this.position.X = (position.X + position.Width / 2) - position.Width;
             }
-            this.position = position;
+
             this.position.Width = (int)(position.Width * 0.75);
 
         }

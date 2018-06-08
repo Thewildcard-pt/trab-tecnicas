@@ -40,7 +40,7 @@ namespace platformerap
         public List<MagicTiles> MagicTiles
         {
             get { return magicTiles; }
-        } 
+        }
         public List<DoorTiles> DoorTiles
         {
             get { return doorTiles; }
@@ -56,7 +56,7 @@ namespace platformerap
             get { return sawtile; }
         }
 
-        public List <SpikeTiles> SpikeTiles
+        public List<SpikeTiles> SpikeTiles
         {
             get { return spikeTiles; }
         }

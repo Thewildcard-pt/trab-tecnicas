@@ -20,7 +20,8 @@ namespace platformerap
             var buttonFont = _content.Load<SpriteFont>("teste");
 
 
-            var newGameButton = new Botao(buttonTexture, buttonFont) {
+            var newGameButton = new Botao(buttonTexture, buttonFont)
+            {
 
                 Position = new Vector2((_game.graphics.PreferredBackBufferWidth / 2 - buttonTexture.Width / 2), game.graphics.PreferredBackBufferHeight / 2 - 200),
                 text = "New Game",
@@ -38,7 +39,7 @@ namespace platformerap
             };
 
             QuitGameButton.Click += QuitGameButton_click;
-            _componentes =new List<Componente>()
+            _componentes = new List<Componente>()
             {
                 newGameButton,QuitGameButton
             };
@@ -55,12 +56,12 @@ namespace platformerap
             _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
         }
 
-        public override void Draw(GameTime gameTime,SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            foreach(var componente in _componentes)
+            foreach (var componente in _componentes)
             {
-                componente.draw(gameTime,spriteBatch);
+                componente.draw(gameTime, spriteBatch);
             }
 
             spriteBatch.End();
@@ -73,7 +74,7 @@ namespace platformerap
 
         public override void Update(GameTime gameTime)
         {
-            foreach(var componente in _componentes)
+            foreach (var componente in _componentes)
             {
                 componente.update(gameTime);
             }

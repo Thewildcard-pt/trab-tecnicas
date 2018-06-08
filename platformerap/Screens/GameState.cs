@@ -21,9 +21,9 @@ namespace platformerap
             _game = game;
             _graphicsDevice = graphicsDevice;
             _content = content;
-                        
-               player = new Player(game.graphics);
-               camera = new Camera(game.graphics.GraphicsDevice.Viewport);
+
+            player = new Player(game.graphics);
+            camera = new Camera(game.graphics.GraphicsDevice.Viewport);
 
             Tiles.Content = content;
             Tiles.Graphics = game.graphics;
@@ -50,10 +50,10 @@ namespace platformerap
                 {00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
                 {00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
                 {00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
-                {00,00,00,00,00,00,00,00,00,00,13,14,15,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
-                {00,00,00,00,00,00,02,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
-                {00,00,00,00,00,24,02,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
-                {00,19,00,00,00,24,02,00,00,00,00,00,00,21,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
+                {00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
+                {00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
+                {00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
+                {00,19,00,00,00,00,00,00,00,00,00,00,00,26,00,28,00,00,00,00,32,00,00,00,00,00,00,00,30,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00},
                 {02,02,02,34,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,02,03},
                 {05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,05,06},
             }, 100);
@@ -63,14 +63,14 @@ namespace platformerap
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-        
+
             spriteBatch.Begin(SpriteSortMode.Deferred,
                                  BlendState.AlphaBlend,
                                  null, null, null, null,
                                  camera.Transform);
 
-                    map.Draw(spriteBatch);
-                    player.Draw(spriteBatch);
+            map.Draw(spriteBatch);
+            player.Draw(spriteBatch);
 
 
             spriteBatch.End();
@@ -78,7 +78,7 @@ namespace platformerap
 
         public override void PostUpdate(GameTime gametime)
         {
-            
+
         }
 
         public override void Update(GameTime gameTime)
@@ -97,98 +97,98 @@ namespace platformerap
             {
                 _game.ChangeState(new PauseState(_game, _game.graphics.GraphicsDevice, _game.Content));
             }
-                // For Mobile devices, this logic will close the Game when the Back button is pressed
-                // Exit() is obsolete on iOS
+            // For Mobile devices, this logic will close the Game when the Back button is pressed
+            // Exit() is obsolete on iOS
 
-                #region to_each_their_own
-                foreach (MovingTiles tile in map.MovingTiles)
+            #region to_each_their_own
+            foreach (MovingTiles tile in map.MovingTiles)
+            {
+                tile.Update(gameTime);
+                player.CollisionT(tile.Rectangle, map.Width, map.Height);
+            }
+
+            foreach (CollisionTiles tile in map.CollisionTiles)
+            {
+                player.CollisionT(tile.Rectangle, map.Width, map.Height);
+                camera.Update(player.Position, map.Width, map.Height);
+            }
+
+            foreach (Sawtile tile in map.Sawtile)
+            {
+                tile.Update(gameTime);
+                if (player.Intersects(tile.Rectangle, map.Width, map.Height))
                 {
-                    tile.Update(gameTime);
-                    player.CollisionT(tile.Rectangle, map.Width, map.Height);
+                    player.Dano(25);
                 }
+            }
 
-                foreach (CollisionTiles tile in map.CollisionTiles)
+            foreach (SpikeTiles tile in map.SpikeTiles)
+            {
+                if (player.Intersects(tile.Rectangle, map.Width, map.Height))
                 {
-                    player.CollisionT(tile.Rectangle, map.Width, map.Height);
-                    camera.Update(player.Position, map.Width, map.Height);
+                    player.Dano(25);
                 }
+            }
 
-                foreach (Sawtile tile in map.Sawtile)
+            foreach (ExitTiles tile in map.ExitTiles)
+            {
+                if (player.Intersects(tile.Rectangle, map.Width, map.Height))
                 {
-                    tile.Update(gameTime);
-                    if (player.Intersects(tile.Rectangle, map.Width, map.Height))
-                    {
-                        player.Dano(25);
-                    }
-                }
-
-                foreach (SpikeTiles tile in map.SpikeTiles)
-                {
-                    if (player.Intersects(tile.Rectangle, map.Width, map.Height))
-                    {
-                            player.Dano(25);
-                    }
-                }
-
-                foreach (ExitTiles tile in map.ExitTiles)
-                {
-                    if (player.Intersects(tile.Rectangle, map.Width, map.Height))
-                    {
                     _game.ChangeState(new MenuState(_game, _game.graphics.GraphicsDevice, _game.Content));
                 }
-                }
+            }
 
-                map.Inimigo.RemoveAll(a => a.Hp <= 0);
-                foreach (Inimigo knight in map.Inimigo)
+            map.Inimigo.RemoveAll(a => a.Hp <= 0);
+            foreach (Inimigo knight in map.Inimigo)
+            {
+
+                foreach (AtaqueJogador a in player.Ataque)
                 {
-
-                        if (player.Intersects(knight.Rectangle, map.Width, map.Height))
-                        {
-                            knight.Timer -= 1;
-                        }
-
-                    if (Math.Abs(player.Rectangle.X - knight.Rectangle.X) <= 160 && knight.grace == 0)
-                    {
-                        knight.UpdateA(gameTime, player.Rectangle);
-                    }
-                    else
-                    {
-                        knight.UpdateI(gameTime);
-                    }
-
-                    foreach (Ataque a in knight.Ataque)
-                        if (player.Intersects(a.position, map.Width, map.Height))
-                        {
-                            player.Dano(knight.dano);
-                        }
+                    if (knight.Intersects(a.position, map.Width, map.Height)) knight.Dano(25);
                 }
 
-                foreach (Zombie z in map.Zombie)
+                if (Math.Abs(player.Rectangle.X - knight.Rectangle.X) <= 160 && knight.grace == 0)
                 {
-
-                    if (player.Intersects(z.Rectangle, map.Width, map.Height))
-                    {
-                        z.Timer -= 1;
-                        player.hp -= 1;
-                    }
-                    z.UpdateI(gameTime);
+                    knight.UpdateA(gameTime, player.Rectangle);
                 }
-
-                foreach (Birb b in map.Birb)
+                else
                 {
-                    b.Update(gameTime, player.Rectangle);
-
-                    foreach (Firebal f in b.Fball)
-                    {
-                        if (player.Intersects(f._rectangle, map.Width, map.Height))
-                        {
-                            player.Dano(f.dano);
-                        }
-                        f.Update(player.Rectangle);
-                    }
+                    knight.UpdateI(gameTime);
                 }
-             #endregion
-           
+
+                foreach (Ataque a in knight.Ataque)
+                    if (player.Intersects(a.position, map.Width, map.Height))
+                    {
+                        player.Dano(knight.dano);
+                    }
+            }
+
+            map.Zombie.RemoveAll(a => a.Hp <= 0);
+            foreach (Zombie z in map.Zombie)
+            {
+
+                foreach (AtaqueJogador a in player.Ataque)
+                {
+                    if (z.Intersects(a.position, map.Width, map.Height)) z.Dano(25);
+                }
+                z.UpdateI(gameTime);
+            }
+
+            foreach (Birb b in map.Birb)
+            {
+                b.Update(gameTime, player.Rectangle);
+
+                foreach (Firebal f in b.Fball)
+                {
+                    if (player.Intersects(f._rectangle, map.Width, map.Height))
+                    {
+                        player.Dano(f.dano);
+                    }
+                    f.Update(player.Rectangle);
+                }
+            }
+            #endregion
+
 
 
             player.Update(gameTime);
