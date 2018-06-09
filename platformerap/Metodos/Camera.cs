@@ -3,9 +3,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace platformerap
-    {
+{
     public class Camera
     {
+        public static Vector2 barLifePos;
         private Matrix transform;
         public Matrix Transform
         {
@@ -38,6 +39,8 @@ namespace platformerap
 
             transform = Matrix.CreateTranslation(new Vector3(-center.X + (viewport.Width / 2),
                                                              -center.Y + (viewport.Height / 2), 0));
+            barLifePos.X = -transform.Translation.X;
+            barLifePos.Y = -transform.Translation.Y;
         }
     }
 }
