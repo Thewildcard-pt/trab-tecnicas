@@ -176,7 +176,7 @@ namespace platformerap
 
                 if (player.Intersects(z.Rectangle, map.Width, map.Height))
                 {
-                    player.hp--;
+                    player.Dano(20);
                 }
 
                 foreach (AtaqueJogador a in player.Ataque)
