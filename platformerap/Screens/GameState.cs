@@ -174,6 +174,11 @@ namespace platformerap
             foreach (Zombie z in map.Zombie)
             {
 
+                if (player.Intersects(z.Rectangle, map.Width, map.Height))
+                {
+                    player.hp--;
+                }
+
                 foreach (AtaqueJogador a in player.Ataque)
                 {
                     if (z.Intersects(a.position, map.Width, map.Height)) z.Dano(25);
