@@ -22,6 +22,7 @@ namespace platformerap
         private int jumpCount = 0;
         private int maxJump = 2;
         public int hp = 100;
+        private Texture2D barLife;
         public bool Spawned { get; set; }
         private bool falling = false;
         private int invun = 10;
@@ -51,6 +52,8 @@ namespace platformerap
             ataquesprite = new Texture2D(graphics.GraphicsDevice, 1, 1);
             ataquesprite.SetData(new Color[] { Color.Red });
             goinright = true;
+            barLife = new Texture2D(graphics.GraphicsDevice, 1, 1);
+            barLife.SetData(new Color[] { Color.Red });
         }
 
         public void Load(ContentManager Content)
@@ -205,6 +208,7 @@ namespace platformerap
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y, 100, 1), Color.Red);
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X + 100, (int)rectangle.Y, 1, 100), Color.Red);
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y + 100, 100, 1), Color.Red);
+                spriteBatch.Draw(barLife, new Rectangle((int)Camera.barLifePos.X, (int)Camera.barLifePos.Y, hp * 2, 30), Color.Red);
             }
         }
 
