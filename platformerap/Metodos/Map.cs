@@ -99,7 +99,7 @@ namespace platformerap
                     else if (number == 21)
                         Sawtile.Add(new Sawtile(number, new Rectangle(x * size + size / 4, y * size + size / 4, size / 2, size / 2), 120, false, true));
                     else if (number == 22)
-                        SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size), y * size, size, size / 2)));
+                        SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size), y * size + size/2, size, size / 2)));
                     else if (number == 23)
                         SpikeTiles.Add(new SpikeTiles(number, new Rectangle((x * size), y * size, size / 2, size)));
                     else if (number == 24)
