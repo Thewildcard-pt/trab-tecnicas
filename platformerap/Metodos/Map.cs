@@ -109,7 +109,7 @@ namespace platformerap
                     else if (number == 26)
                         Inimigo.Add(new Inimigo(number, number + 1, 40, 30, new Rectangle(x * size, ((y * size)), size, size), 120, false, true, 100, 150));
                     else if (number == 28)
-                        inimigo.Add(new Inimigo(number, number + 1, 60, 50, new Rectangle(x * size, ((y * size)), size, size), 120, false, true, 130, 0));
+                        inimigo.Add(new Inimigo(number, number + 1, 60, 100, new Rectangle(x * size, ((y * size)), size, size), 120, false, true, 130, 0));
                     else if (number == 30)
                         Zombie.Add(new Zombie(number, number + 1, 60, 50, new Rectangle(x * size, ((y * size)), size, size), 120, false, true, 130, 50));
                     else if (number == 32)
