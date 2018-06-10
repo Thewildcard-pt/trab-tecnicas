@@ -24,7 +24,7 @@ namespace platformerap
             {
 
                 Position = new Vector2((_game.graphics.PreferredBackBufferWidth / 2 - buttonTexture.Width / 2), game.graphics.PreferredBackBufferHeight / 2 - 200),
-                text = "New Game",
+                text = "Restart",
                 PenColour = Color.Black
             };
 

@@ -23,7 +23,7 @@ namespace platformerap
             var newGameButton = new Botao(buttonTexture, buttonFont) {
 
                 Position = new Vector2((_game.graphics.PreferredBackBufferWidth / 2 - buttonTexture.Width / 2), game.graphics.PreferredBackBufferHeight / 2 - 200),
-                text = "New Game",
+                text = "Resume Game",
                 PenColour = Color.Black
             };
 
@@ -33,7 +33,7 @@ namespace platformerap
             {
 
                 Position = new Vector2((_game.graphics.PreferredBackBufferWidth / 2 - buttonTexture.Width / 2), game.graphics.PreferredBackBufferHeight / 2),
-                text = "Quit",
+                text = "Quit Game",
                 PenColour = Color.Black
             };
 

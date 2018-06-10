@@ -30,6 +30,7 @@ namespace platformerap
         private Texture2D ataquesprite;
         private List<AtaqueJogador> ataque = new List<AtaqueJogador>();
         private bool goinright;
+        public bool moved = false;
  
 
         public Vector2 Position
@@ -62,6 +63,24 @@ namespace platformerap
             texture = Content.Load<Texture2D>("player");
         }
 
+        public void Move(bool right,int velocity1,GameTime gameTime)
+        {
+
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+                if (right)
+                {
+                    position.X = Rectangle.X + (int)(velocity1 * dt);
+                }
+                else
+                {
+                position.X = Rectangle.X + (int)(velocity1 * dt);
+                }
+
+
+        }
+
         public void Update(GameTime gameTime)
         {
             Input(gameTime);
@@ -91,6 +110,7 @@ namespace platformerap
             {
                 goinright = false;
             }
+
         }
 
         public void Dano(int value)
@@ -209,11 +229,9 @@ namespace platformerap
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y, 100, 1), Color.Red);
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X + 100, (int)rectangle.Y, 1, 100), Color.Red);
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y + 100, 100, 1), Color.Red);
-<<<<<<< HEAD
+
                 spriteBatch.Draw(barLife, new Rectangle((int)Camera.barLifePos.X, (int)Camera.barLifePos.Y, (int)((Rectangle.Width) * hp / 100), 30), Color.Red);
-=======
-                spriteBatch.Draw(barLife, new Rectangle((int)Camera.barLifePos.X, (int)Camera.barLifePos.Y, hp * 2, 30), Color.Red);
->>>>>>> 1bc77f61ca8bb81644ee2a69658b5f5a3bfd5fd8
+
             }
         }
 

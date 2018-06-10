@@ -169,6 +169,8 @@ namespace platformerap
                     }
             }
 
+
+
             map.Zombie.RemoveAll(a => a.Hp <= 0);
             foreach (Zombie z in map.Zombie)
             {
@@ -185,6 +187,7 @@ namespace platformerap
                 z.UpdateI(gameTime);
             }
 
+            
 
             map.Birb.RemoveAll(a => a.Hp <= 0);
             foreach (Birb b in map.Birb)
@@ -208,6 +211,8 @@ namespace platformerap
                     f.Update(player.Rectangle);
                 }
             }
+
+   
             #endregion
 
 
@@ -218,6 +223,14 @@ namespace platformerap
                 _game.ChangeState(new LossState(_game, _game.graphics.GraphicsDevice, _game.Content));
             }
 
+
+           foreach(MovingTiles m in map.MovingTiles)
+            {
+                if (player.Intersects(m.Rectangle, map.Width, map.Height))
+                {
+                    player.Move(m.goingRight, m.Velocity +6 ,gameTime);
+                }
+            }
 
             Kstate = Keyboard.GetState();
 
