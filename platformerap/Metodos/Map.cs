@@ -22,7 +22,7 @@ namespace platformerap
         private List<Inimigo> inimigo = new List<Inimigo>();
         private List<Zombie> zombie = new List<Zombie>();
         private List<Birb> birb = new List<Birb>();
-
+ 
 
         //public access methods
         public List<CollisionTiles> CollisionTiles
@@ -81,6 +81,8 @@ namespace platformerap
 
         public void Generate(int[,] map, int size)
         {
+           
+          
             for (int x = 0; x < map.GetLength(1); x++)
                 for (int y = 0; y < map.GetLength(0); y++)
                 {
@@ -89,7 +91,7 @@ namespace platformerap
                     if (number > 0 && number != 13 && number != 14 && number != 15 && number != 17 && number != 18 && number != 19 && number != 20 && number != 21 && number != 25 && number != 22 && number != 23 && number != 24 && number != 26 && number != 28 && number != 30 && number != 32)
                         collisionTiles.Add(new CollisionTiles(number, new Rectangle(x * size, y * size, size, size)));
                     else if (number == 13 || number == 14 || number == 15)
-                        movingTiles.Add(new MovingTiles(number, new Rectangle(x * size, y * size, size, size), 120, false, true, 15));
+                        movingTiles.Add(new MovingTiles(number, new Rectangle(x * size, y * size, size, size), 120, false, true,15));
                     else if (number == 17 || number == 18)
                         waterTiles.Add(new WaterTiles(number, new Rectangle(x * size, y * size, size, size)));
                     else if (number == 19)
@@ -113,7 +115,7 @@ namespace platformerap
                     else if (number == 30)
                         Zombie.Add(new Zombie(number, number + 1, 60, 50, new Rectangle(x * size, ((y * size)), size, size), 120, false, true, 130, 50));
                     else if (number == 32)
-                        Birb.Add(new Birb(number, new Rectangle(x * size, y * size, size, size / 2), 120, false, true, 3));
+                        Birb.Add(new Birb(number, new Rectangle(x * size, y * size, size, size / 2), 120, false, true, 10));
                     Width = (x + 1) * size;
                     Height = (y + 1) * size;
                 }

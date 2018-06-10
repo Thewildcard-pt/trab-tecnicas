@@ -30,6 +30,7 @@ namespace platformerap
         private Texture2D ataquesprite;
         private List<AtaqueJogador> ataque = new List<AtaqueJogador>();
         private bool goinright;
+ 
 
         public Vector2 Position
         {
