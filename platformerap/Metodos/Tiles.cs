@@ -428,13 +428,20 @@ namespace platformerap
         public List<Firebal> Fball = new List<Firebal>();
         int stateAgle = 1;
         double rot = 0;
-        Texture2D textura2;
+        Texture2D textura2, texturabase, texturacurrent;
+        Rectangle lifeBarBase, lifeBarCurrent;
 
         public Birb(int i, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally, int hboundry) : base(i, newRectangle, newVelocity, newVertically, newHorizontally, hboundry)
         {
             this.i = i;
             _ataque = Content.Load<Texture2D>("fireBall");
            textura2 = Content.Load<Texture2D>((i+1).ToString());
+
+            texturabase = new Texture2D(Graphics.GraphicsDevice, 1, 1);
+            texturacurrent = new Texture2D(Graphics.GraphicsDevice, 1, 1);
+
+            texturabase.SetData(new Color[] { Color.Red });
+            texturacurrent.SetData(new Color[] { Color.Green });
         }
 
         public new void Update(GameTime gameTime, Rectangle player)
@@ -463,6 +470,9 @@ namespace platformerap
                 Fball.Add(new Firebal(Rectangle, _ataque));
                 timer = 200;
             }
+
+            lifeBarBase = new Rectangle((int)Rectangle.X - 10, (int)Rectangle.Y - Rectangle.Height / 3, (int)(Rectangle.Width + 20), 10);
+            lifeBarCurrent = new Rectangle((int)Rectangle.X - 10, (int)Rectangle.Y - Rectangle.Height / 3, (int)((Rectangle.Width + 20) * Hp / 100), 10);
 
         }
 
@@ -502,6 +512,10 @@ namespace platformerap
             {
                 spritebatch.Draw(texture, Rectangle, Color.White);
             }
+
+
+            spritebatch.Draw(texturabase, lifeBarBase, Color.White);
+            spritebatch.Draw(texturacurrent, lifeBarCurrent, Color.White);
 
             foreach (Firebal f in Fball)
             {
