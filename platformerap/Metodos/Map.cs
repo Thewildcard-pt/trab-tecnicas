@@ -89,7 +89,7 @@ namespace platformerap
                     if (number > 0 && number != 13 && number != 14 && number != 15 && number != 17 && number != 18 && number != 19 && number != 20 && number != 21 && number != 25 && number != 22 && number != 23 && number != 24 && number != 26 && number != 28 && number != 30 && number != 32)
                         collisionTiles.Add(new CollisionTiles(number, new Rectangle(x * size, y * size, size, size)));
                     else if (number == 13 || number == 14 || number == 15)
-                        movingTiles.Add(new MovingTiles(number, new Rectangle(x * size, y * size, size, size), 120, false, true, 6));
+                        movingTiles.Add(new MovingTiles(number, new Rectangle(x * size, y * size, size, size), 120, false, true, 15));
                     else if (number == 17 || number == 18)
                         waterTiles.Add(new WaterTiles(number, new Rectangle(x * size, y * size, size, size)));
                     else if (number == 19)
