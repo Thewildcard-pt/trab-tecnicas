@@ -75,7 +75,7 @@ namespace platformerap
                 }
                 else
                 {
-                position.X = Rectangle.X + (int)(velocity1 * dt);
+                position.X = Rectangle.X - (int)(velocity1 * dt);
                 }
 
 
