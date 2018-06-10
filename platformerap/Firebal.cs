@@ -27,7 +27,7 @@ namespace platformerap
             _rectangle.Height = _rectangle.Height / 2;
             velocity = 5;
             _texture = texture;
-            lifespan = 180;
+            lifespan = 100;
         }
 
         public void Update(Rectangle player)

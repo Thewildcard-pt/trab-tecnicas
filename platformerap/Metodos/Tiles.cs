@@ -456,10 +456,10 @@ namespace platformerap
 
             timerd--;
             timer -= 1;
-            if (Math.Abs(player.X - Rectangle.X) < 250 && timer <= 0)
+            if (Math.Abs(player.X - Rectangle.X) < 400 && timer <= 0)
             {
                 Fball.Add(new Firebal(Rectangle, _ataque));
-                timer = 60;
+                timer = 100;
             }
 
         }
