@@ -133,6 +133,8 @@ namespace platformerap
                 if (player.Intersects(tile.Rectangle, map.Width, map.Height))
                 {
                     player.Dano(25);
+                    player.CollisionT(tile.Rectangle, map.Width, map.Height);
+                    camera.Update(player.Position, map.Width, map.Height);
                 }
             }
 

@@ -10,7 +10,7 @@ namespace platformerap
 {
     public class Player
     {
-        private Texture2D texture;
+        private Texture2D texture,texture2;
         private Vector2 position = new Vector2(0, 0);
         private Vector2 velocity;
         private int speed = 3;
@@ -48,8 +48,6 @@ namespace platformerap
 
         public Player(GraphicsDeviceManager graphics)
         {
-            borders = new Texture2D(graphics.GraphicsDevice, 1, 1);
-            borders.SetData(new Color[] { Color.Red });
             Spawned = false;
             ataquesprite = new Texture2D(graphics.GraphicsDevice, 1, 1);
             ataquesprite.SetData(new Color[] { Color.Red });
@@ -61,6 +59,7 @@ namespace platformerap
         public void Load(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("player");
+            texture2 = Content.Load<Texture2D>("player2");
         }
 
         public void Move(bool right,int velocity1,GameTime gameTime)
@@ -217,18 +216,18 @@ namespace platformerap
         {
             if (Spawned)
             {
-                spriteBatch.Draw(texture, rectangle, Color.White);
-
+                if (goinright)
+                {
+                    spriteBatch.Draw(texture, rectangle, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture2, rectangle, Color.White);
+                }
                 foreach (AtaqueJogador a in ataque)
                 {
                     a.Draw(spriteBatch);
                 }
-
-                //draw borders
-                spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y, 1, 100), Color.Red);
-                spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y, 100, 1), Color.Red);
-                spriteBatch.Draw(borders, new Rectangle((int)rectangle.X + 100, (int)rectangle.Y, 1, 100), Color.Red);
-                spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y + 100, 100, 1), Color.Red);
 
                 spriteBatch.Draw(barLife, new Rectangle((int)Camera.barLifePos.X, (int)Camera.barLifePos.Y, (hp + 10) * 2, 30), Color.Red);
 

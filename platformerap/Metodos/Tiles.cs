@@ -428,11 +428,13 @@ namespace platformerap
         public List<Firebal> Fball = new List<Firebal>();
         int stateAgle = 1;
         double rot = 0;
+        Texture2D textura2;
 
         public Birb(int i, Rectangle newRectangle, int newVelocity, bool newVertically, bool newHorizontally, int hboundry) : base(i, newRectangle, newVelocity, newVertically, newHorizontally, hboundry)
         {
             this.i = i;
             _ataque = Content.Load<Texture2D>("fireBall");
+           textura2 = Content.Load<Texture2D>((i+1).ToString());
         }
 
         public new void Update(GameTime gameTime, Rectangle player)
@@ -491,7 +493,16 @@ namespace platformerap
 
         public new void Draw(SpriteBatch spritebatch)
         {
-            base.Draw(spritebatch);
+
+            if (goingRight)
+            {
+                spritebatch.Draw(textura2, Rectangle, Color.White);
+            }
+            else
+            {
+                spritebatch.Draw(texture, Rectangle, Color.White);
+            }
+
             foreach (Firebal f in Fball)
             {
                 f.Draw(spritebatch);
