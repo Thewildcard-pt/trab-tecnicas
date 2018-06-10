@@ -21,7 +21,7 @@ namespace platformerap
         public KeyboardState pastkey;
         private int jumpCount = 0;
         private int maxJump = 2;
-        public int hp = 100;
+        public int hp = 200;
         private Texture2D barLife;
         public bool Spawned { get; set; }
         private bool falling = false;
@@ -230,7 +230,7 @@ namespace platformerap
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X + 100, (int)rectangle.Y, 1, 100), Color.Red);
                 spriteBatch.Draw(borders, new Rectangle((int)rectangle.X, (int)rectangle.Y + 100, 100, 1), Color.Red);
 
-                spriteBatch.Draw(barLife, new Rectangle((int)Camera.barLifePos.X, (int)Camera.barLifePos.Y, (int)((Rectangle.Width) * hp / 100), 30), Color.Red);
+                spriteBatch.Draw(barLife, new Rectangle((int)Camera.barLifePos.X, (int)Camera.barLifePos.Y, (hp + 10) * 2, 30), Color.Red);
 
             }
         }
